@@ -1,0 +1,7 @@
+---
+name: JupyterLAB with GPU (TESTING)
+category: Interactive Apps
+subcategory: Servers
+role: batch_connect
+description: |
+  This app will launch a JupyterLab instance on GPU node with selected toolchain generation.

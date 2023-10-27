@@ -1,0 +1,46 @@
+---
+cluster: "phoebev1"
+
+attributes:
+
+  extra_jupyter_args: ""
+
+  preloaded_modules:
+          label: Toolchain generation
+          widget: select
+          options:
+                  - [ "2022a_R1 with GPU support (incl. Tensorflow, OpenCV,CuPy)","foss/2022a SciPy-bundle/2022.05-foss-2022a PyYAML/6.0-GCCcore-12.3.0 matplotlib/3.5.2-foss-2022a ipympl/0.9.3-foss-2022a h5py/3.7.0-foss-2022a OpenCV/4.6.0-foss-2022a-CUDA-11.7.0-contrib TensorFlow/2.11.0-foss-2022a-CUDA-11.7.0 CuPy/12.0.0-foss-2022a IPython/8.5.0-GCCcore-11.3.0 PyTorch/1.12.1-foss-2022a-CUDA-11.7.0" ]
+          help: |
+                  <b>2022a_R1:</b><code>GCC-11.3.0,Python-3.10.4,CUDA-11.7.0,OpenCV-4.6.0,TensorFlow-2.11.0,Cupy-12.0.0,PyTorch-1.12.1</code>
+
+  num_hours:
+          label: Session duration
+          widget: select
+          options:
+                  - [ "8h", "8"]
+                  - [ "24h", "24"]
+                  - [ "1week", "168"]
+                  - [ "14 days", "336" ]
+          value: "24"
+          help: |
+                  Select session duration. Once your job exceeds the specified walltime, it will be terminated.
+  slot_cnt:
+          label: Instance size
+          help: select instance size
+          widget: select
+          options:
+                  - [ "1 slot (8c + 1GPU + 250GB RAM )", "1" ]
+                  - [ "2 slots (16c + 2GPUs + 512GB RAM)", "2" ]
+                  - [ "4 slots (32c + 4GPUs + 1TB RAM)", "4" ]
+                  - [ "8 slots (64c + 8GPUs + 2TB RAM)", "8" ]
+          help: |
+                  Compute resources (CPU, GPU, and memory) at GPU nodes are proportionally divided into slots.
+                  Each slot consists from
+                  <ul><li>8 CPU</li><li>1x NVIDIA A100</li><li>250GB RAM</li></ul>
+
+form:
+  
+  - preloaded_modules
+  - extra_jupyter_args
+  - num_hours
+  - slot_cnt

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# SITE-SPECIFIC setup:
+VENVS_PREFIX='/sw/phoebe/common/venvs'
+KW_PREFIX='/sw/phoebe/common/kernel_wrappers'
+
+# Benchmark info
+echo "TIMING - Starting main script at: $(date)"
+
+# Set working directory to home directory
+cd "${HOME}"
+
+# activate jupyter venv:
+
+source "${VENVS_PREFIX}/current/bin/activate"
+
+echo "JUPYTER_PATH: ${JUPYTER_PATH}"
+export JUPYTER_PATH="${KW_PREFIX}/share/jupyter:${JUPYTER_PATH}"
+export PHOEBE_PLEASE_LOAD="<%= context.preloaded_modules %>"
+
+# Launch the Jupyter Notebook Server
+set -x
+# jupyter nbextension enable --py --sys-prefix ipympl
+#jupyter server extension enable --user --py jupyter_scheduler 
+
+# jupyter nbextension list
+
+jupyter lab --config="${CONFIG_FILE}" <%= context.extra_jupyter_args %>
